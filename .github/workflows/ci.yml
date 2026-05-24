@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install system libraries and Python dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8 cairosvg
+
+    - name: Lint
+      run: |
+        flake8 src || true
+
+    - name: Run training pipeline
+      run: python src/pipeline/train.pipeline.py
+
+    - name: Generate PNGs from SVGs
+      run: python scripts/svg_to_png.py || true
+
+    - name: Upload docs
+      uses: actions/upload-artifact@v4
+      with:
+        name: docs
+        path: |
+          docs/*.png
+          docs/*.svg
