@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="240" viewBox="0 0 820 240">
+  <style>
+    .title{ font:18px sans-serif; font-weight:700 }
+    .pill{ fill:#f0f6ff; stroke:#2b6cb0; stroke-width:1.5 }
+    .label{ font:13px sans-serif; fill:#0f172a }
+    .small{ font:12px sans-serif; fill:#334155 }
+    .arrow{ stroke:#334155; stroke-width:2; fill:none }
+  </style>
+
+  <text x="16" y="28" class="title">MLProject — Pipeline Overview</text>
+
+  <!-- Pills -->
+  <rect x="24" y="52" rx="8" ry="8" width="160" height="56" class="pill"/>
+  <text x="44" y="82" class="label">1. Data Ingestion</text>
+  <text x="44" y="100" class="small">src/components/data_ingestion.py</text>
+
+  <rect x="240" y="52" rx="8" ry="8" width="180" height="56" class="pill"/>
+  <text x="260" y="82" class="label">2. Data Transformation</text>
+  <text x="260" y="100" class="small">src/components/data_transformation.py</text>
+
+  <rect x="468" y="52" rx="8" ry="8" width="200" height="56" class="pill"/>
+  <text x="488" y="82" class="label">3. Model Training (CatBoost)</text>
+  <text x="488" y="100" class="small">src/components/model_trainer.py</text>
+
+  <rect x="692" y="52" rx="8" ry="8" width="120" height="56" class="pill"/>
+  <text x="708" y="82" class="label">4. Artifacts</text>
+  <text x="708" y="100" class="small">artifacts/, catboost_info/</text>
+
+  <!-- Arrows -->
+  <path d="M184 80 L240 80" class="arrow" marker-end="url(#a)"/>
+  <path d="M420 80 L468 80" class="arrow" marker-end="url(#a)"/>
+  <path d="M668 80 L692 80" class="arrow" marker-end="url(#a)"/>
+
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#334155" />
+    </marker>
+  </defs>
+
+  <text x="16" y="160" class="small">Notes: Notebooks in `notebook/` demonstrate EDA and training; run `python src/pipeline/train.pipeline.py` to train.</text>
+</svg>
